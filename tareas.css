@@ -1,0 +1,318 @@
+/* Importar fuente Open Sans desde Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap');
+
+/* Estilo general para la página */
+body {
+    font-family: 'Open Sans', sans-serif; /* Aplicar la fuente Open Sans para un diseño moderno */
+    background-color: white; /* Fondo blanco para una apariencia limpia */
+    margin: 0; /* Eliminar márgenes por defecto */
+    padding: 0; /* Eliminar relleno por defecto */
+}
+
+/* Contenedor principal que incluye el menú y las tareas */
+.container {
+    display: flex; /* Usar flexbox para alinear los elementos */
+    justify-content: center; /* Centrar el contenido horizontalmente */
+}
+
+/* Contenedor de tareas */
+.tareas-container {
+    max-width: 1200px; /* Ancho máximo del contenedor */
+    margin: 20px auto; /* Margen automático para centrar */
+    padding: 20px; /* Espaciado interno */
+    background-color: white; /* Fondo blanco */
+    border-radius: 8px; /* Bordes redondeados */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Sombra sutil para profundidad */
+    flex-grow: 1; /* Permitir que el contenedor crezca si es necesario */
+}
+
+/* Estilo para la tabla de tareas */
+table {
+    width: 100%; /* Ancho completo del contenedor */
+    border-collapse: collapse; /* Colapsar bordes de la tabla */
+    margin-bottom: 20px; /* Margen inferior */
+}
+
+thead {
+    background-color: white; /* Fondo blanco para el encabezado */
+}
+
+th {
+    color: black; /* Color del texto en el encabezado */
+    padding: 10px; /* Espaciado interno */
+    border: 1px solid #ddd; /* Borde gris claro */
+}
+
+td {
+    border: 1px solid #ddd; /* Borde gris claro */
+    padding: 10px; /* Espaciado interno */
+    text-align: left; /* Alinear texto a la izquierda */
+    font-size: 14px; /* Tamaño de fuente */
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2; /* Fondo gris claro para filas pares */
+}
+
+tr:hover {
+    background-color: #ddd; /* Fondo gris claro al pasar el ratón */
+}
+
+/* Estilo para los botones de acción en la tabla */
+.action-buttons {
+    display: flex; /* Usar flexbox para alinear los botones */
+    gap: 5px; /* Espacio entre botones */
+}
+
+.edit-task {
+    background-color: #007bff; /* Fondo azul */
+    color: white; /* Texto blanco */
+    border: none; /* Sin borde */
+    padding: 8px 12px; /* Espaciado interno */
+    font-size: 14px; /* Tamaño de fuente */
+    border-radius: 4px; /* Bordes redondeados */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+}
+
+.edit-task:hover {
+    background-color: #0056b3; /* Azul más oscuro al pasar el ratón */
+}
+
+.remove-task {
+    background-color: #dc3545; /* Fondo rojo */
+    color: white; /* Texto blanco */
+    border: none; /* Sin borde */
+    padding: 8px 12px; /* Espaciado interno */
+    font-size: 14px; /* Tamaño de fuente */
+    border-radius: 4px; /* Bordes redondeados */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+}
+
+.remove-task:hover {
+    background-color: #c82333; /* Rojo más oscuro al pasar el ratón */
+}
+
+/* Estilo para añadir tarea */
+.add-task {
+    background-color: #17a2b8; /* Fondo azul claro */
+    color: white; /* Texto blanco */
+    border: none; /* Sin borde */
+    padding: 10px 15px; /* Espaciado interno */
+    font-size: 14px; /* Tamaño de fuente */
+    border-radius: 4px; /* Bordes redondeados */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+}
+
+.add-task:hover {
+    background-color: #138496; /* Azul más oscuro al pasar el ratón */
+}
+
+/* Contenedor para acciones en la parte inferior */
+.bottom-actions {
+    display: flex; /* Usar flexbox para alinear los elementos */
+    justify-content: space-between; /* Espacio entre los elementos */
+    margin-top: 20px; /* Margen superior */
+}
+
+/* Estilo para el formulario de añadir tarea */
+.add-task-form {
+    display: flex; /* Usar flexbox para alinear los elementos */
+    gap: 10px; /* Espacio entre los elementos */
+    align-items: center; /* Alinear elementos verticalmente */
+}
+
+/* Estilo para el cuadro de texto de descripción de tarea */
+.add-task-form input[type="text"] {
+    width: 300px; /* Ancho fijo del campo de texto */
+    padding: 10px; /* Espaciado interno */
+    border: 1px solid #ddd; /* Borde gris claro */
+    border-radius: 4px; /* Bordes redondeados */
+}
+
+/* Estilo para el botón de cerrar sesión */
+.logout-button {
+    background-color: #000000; /* Fondo negro */
+    color: white; /* Texto blanco */
+    border: none; /* Sin borde */
+    padding: 10px 15px; /* Espaciado interno */
+    font-size: 14px; /* Tamaño de fuente */
+    border-radius: 4px; /* Bordes redondeados */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+}
+
+.logout-button:hover {
+    background-color: #c82333; /* Rojo al pasar el ratón */
+}
+
+/* Estilo para el mensaje de alerta */
+.alert {
+    background-color: #bce99d; /* Fondo verde claro */
+    padding: 15px; /* Espaciado interno */
+    color: rgba(25, 148, 55, 0.678); /* Color del texto verde oscuro */
+    border-radius: 4px; /* Bordes redondeados */
+    margin-top: 20px; /* Margen superior */
+    position: relative; /* Posicionamiento relativo para los elementos hijos */
+}
+
+.close-alert {
+    position: absolute; /* Posicionamiento absoluto para el botón de cerrar */
+    top: 5px; /* Distancia desde el borde superior */
+    right: 10px; /* Distancia desde el borde derecho */
+    background: none; /* Sin fondo */
+    border: none; /* Sin borde */
+    font-size: 20px; /* Tamaño de fuente */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+}
+
+.close-alert:hover {
+    color: red; /* Rojo al pasar el ratón */
+}
+
+/* Estilo para el mensaje de comentario */
+.task-comment {
+    background-color: #28a745; /* Fondo verde */
+    color: white; /* Texto blanco */
+    padding: 10px; /* Espaciado interno */
+    border-radius: 4px; /* Bordes redondeados */
+    margin-top: 10px; /* Margen superior */
+}
+
+/* Estilo para el botón de estado */
+.status {
+    padding: 8px 15px; /* Espaciado interno */
+    font-size: 14px; /* Tamaño de fuente */
+    border-radius: 4px; /* Bordes redondeados */
+    border: none; /* Sin borde */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+    text-transform: capitalize; /* Capitalizar la primera letra */
+}
+
+/* Estilo para el estado 'pendiente' */
+.status.pendiente {
+    background-color: #ffd000; /* Fondo amarillo */
+    color: rgb(255, 254, 254); /* Texto blanco */
+}
+
+.status.pendiente:hover {
+    background-color: #e9be00; /* Amarillo más oscuro al pasar el ratón */
+}
+
+/* Estilo para el estado 'completada' */
+.status.completada {
+    background-color: #28a745; /* Fondo verde */
+    color: white; /* Texto blanco */
+}
+
+.status.completada:hover {
+    background-color: #218838; /* Verde más oscuro al pasar el ratón */
+}
+
+/* Estilo para el formulario de búsqueda */
+.search-form {
+    margin-bottom: 20px; /* Margen inferior */
+    display: flex; /* Usar flexbox para alinear los elementos */
+    justify-content: center; /* Centrar el formulario horizontalmente */
+}
+
+.search-form input[type="text"] {
+    padding: 10px; /* Espaciado interno */
+    border: 1px solid #ddd; /* Borde gris claro */
+    border-radius: 4px; /* Bordes redondeados */
+    width: 300px; /* Ancho fijo del campo de búsqueda */
+    font-size: 14px; /* Tamaño de fuente */
+}
+
+.search-form button {
+    background-color: #000000; /* Fondo negro */
+    color: white; /* Texto blanco */
+    border: none; /* Sin borde */
+    padding: 10px 15px; /* Espaciado interno */
+    border-radius: 4px; /* Bordes redondeados */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+    font-size: 14px; /* Tamaño de fuente */
+    margin-left: 10px; /* Espacio entre el campo de búsqueda y el botón */
+}
+
+.search-form button:hover {
+    background-color: #000000; /* Negro al pasar el ratón */
+}
+
+/* Estilo para el formulario de ordenación */
+.sort-form {
+    margin-bottom: 20px; /* Margen inferior */
+    display: flex; /* Usar flexbox para alinear los elementos */
+    align-items: center; /* Alinear elementos verticalmente */
+    justify-content: center; /* Centrar el formulario horizontalmente */
+    gap: 10px; /* Espacio entre elementos */
+}
+
+.sort-form label {
+    font-size: 14px; /* Tamaño de fuente más pequeño */
+    margin-right: 10px; /* Espacio a la derecha */
+    color: #000000; /* Color del texto */
+}
+
+.sort-form select {
+    padding: 8px 12px; /* Espaciado interno reducido */
+    border: 1px solid #ddd; /* Borde gris claro */
+    border-radius: 4px; /* Bordes cuadrados */
+    font-size: 14px; /* Tamaño de fuente más pequeño */
+    background-color: white; /* Fondo blanco */
+    box-shadow: inset 0 1px 3px rgba(255, 255, 255, 0.1); /* Sombra interna */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Transición suave para borde y sombra */
+}
+
+.sort-form select:focus {
+    border-color: #007bff; /* Color del borde al enfocar */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Sombra externa al enfocar */
+    outline: none; /* Eliminar el borde de enfoque predeterminado */
+}
+
+/* Estilo para el mensaje de advertencia */
+.alert {
+    background-color: #d5ffcd; /* verde pálido */
+    border: 1px solid #baffba; /* Borde verde pálido */
+    color: #048524; /* Texto verde oscuro */
+    padding: 15px; /* Espaciado interno */
+    border-radius: 4px; /* Bordes redondeados */
+    margin-bottom: 20px; /* Margen inferior */
+    position: relative; /* Posicionamiento relativo para los elementos hijos */
+    width: fit-content; /* Ancho ajustado al contenido */
+}
+
+.alert a {
+    color: #ffffff; /* Color del enlace */
+    text-decoration: none; /* Sin subrayado */
+}
+
+/* Estilo para los botones de confirmación y cancelación dentro del mensaje de advertencia */
+.alert-buttons {
+    margin-top: 10px; /* Margen superior */
+}
+
+.confirm-task, .cancel-task {
+    border: none; /* Sin borde */
+    color: white; /* Texto blanco */
+    padding: 8px 12px; /* Ajustar espaciado interno para uniformidad */
+    border-radius: 4px; /* Bordes redondeados */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+    margin-right: 10px; /* Espacio a la derecha */
+    font-size: 14px; /* Tamaño de fuente uniforme */
+}
+
+.confirm-task {
+    background-color: #28a745; /* Fondo verde */
+}
+
+.cancel-task {
+    background-color: #dc3545; /* Fondo rojo */
+    text-decoration: none; /* Sin subrayado */
+}
+
+.confirm-task:hover {
+    background-color: #218838; /* Verde más oscuro al pasar el ratón */
+}
+
+.cancel-task:hover {
+    background-color: #c82333; /* Rojo más oscuro al pasar el ratón */
+}
