@@ -81,7 +81,8 @@ $conn->close();
 
         .social-login {
             display: flex;
-            justify-content: space-around;
+            flex-direction: column; /* Coloca los botones en columna */
+            align-items: center; /* Centra los botones horizontalmente */
             margin-top: 20px;
         }
 
@@ -91,6 +92,8 @@ $conn->close();
             cursor: pointer;
             border-radius: 5px;
             font-size: 16px;
+            width: 100%; /* Asegura que ambos botones tengan el mismo ancho */
+            margin-bottom: 10px; /* Espacio entre los botones */
         }
 
         .google {
@@ -131,10 +134,14 @@ $conn->close();
         <?php endif; ?>
 
         <div class="social-login">
-    <button class="social-button google" onclick="location.href='https://accounts.google.com/o/oauth2/auth?client_id=YOUR_CLIENT_ID&redirect_uri=YOUR_REDIRECT_URI&response_type=code&scope=email';">Registrar con Google</button>
-    <button class="social-button facebook" onclick="location.href='https://www.facebook.com/v10.0/dialog/oauth?client_id=YOUR_APP_ID&redirect_uri=YOUR_REDIRECT_URI&scope=email';">Registrar con Facebook</button>
-</div>
-
+            <button class="social-button facebook" onclick="location.href='https://www.facebook.com/v10.0/dialog/oauth?client_id=YOUR_APP_ID&redirect_uri=YOUR_REDIRECT_URI&scope=email';">
+                <i class="fab fa-facebook-f"></i> Registrar con Facebook
+            </button>
+            <button class="social-button google" onclick="location.href='https://accounts.google.com/o/oauth2/auth?client_id=YOUR_CLIENT_ID&redirect_uri=YOUR_REDIRECT_URI&response_type=code&scope=email';">
+                <i class="fab fa-google"></i> Registrar con Google
+            </button>
+        </div>
+    </div>
 
     <script>
         const togglePassword = document.getElementById('togglePassword');

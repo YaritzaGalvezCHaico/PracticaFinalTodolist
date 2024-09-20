@@ -83,6 +83,41 @@ $conn->close();
         .toggle-password:hover {
             color: #000;
         }
+
+        .social-login {
+            display: flex;
+            flex-direction: column; /* Coloca los botones en columna */
+            align-items: center; /* Centra los botones horizontalmente */
+            margin-top: 20px;
+        }
+
+        .social-button {
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+            width: 100%; /* Asegura que ambos botones tengan el mismo ancho */
+            margin-bottom: 10px; /* Espacio entre los botones */
+            display: flex; /* Para alinear el ícono y el texto */
+            align-items: center; /* Centra el ícono y el texto verticalmente */
+            justify-content: center; /* Centra el texto horizontalmente */
+        }
+
+        .google {
+            background-color: #db4437;
+            color: white;
+        }
+
+        .facebook {
+            background-color: #4267B2;
+            color: white;
+        }
+
+        .social-button i {
+            margin-right: 10px; /* Espacio entre el ícono y el texto */
+            margin-left: -15px; /* Ajuste para mover el ícono un poco más a la izquierda */
+        }
     </style>
 </head>
 <body>
@@ -103,6 +138,15 @@ $conn->close();
                 <a href="registro.php" class="registro-button">Ir a registro</a>
             </div>
         </form>
+
+        <div class="social-login">
+            <button class="social-button facebook" onclick="location.href='https://www.facebook.com/v10.0/dialog/oauth?client_id=YOUR_APP_ID&redirect_uri=YOUR_REDIRECT_URI&scope=email';">
+                <i class="fab fa-facebook-f"></i> Iniciar sesión con Facebook
+            </button>
+            <button class="social-button google" onclick="location.href='https://accounts.google.com/o/oauth2/auth?client_id=YOUR_CLIENT_ID&redirect_uri=YOUR_REDIRECT_URI&response_type=code&scope=email';">
+                <i class="fab fa-google"></i> Iniciar sesión con Google
+            </button>
+        </div>
     </div>
 
     <script>

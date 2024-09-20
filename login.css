@@ -213,3 +213,15 @@ button:hover {
 .registro-button:hover {
     background-color: #f8f9fa; /* Color de hover para registro */
 }
+
+.social-login {
+    display: flex;
+    flex-direction: column; /* Asegura que los botones estén en una columna */
+    align-items: center; /* Centra los botones horizontalmente */
+    margin-top: 20px;
+}
+
+.social-button {
+    width: 100%; /* Asegúrate de que ambos botones tengan el mismo ancho */
+    margin-bottom: 10px; /* Espacio entre los botones */
+}
