@@ -5,10 +5,10 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 // Configuración de la base de datos
-$servername = "localhost"; // Cambia esto si tu servidor MySQL tiene un nombre diferente  
-$username = "root"; // Cambia esto por tu nombre de usuario de MySQL  
-$password = ""; // Cambia esto por tu contraseña de MySQL  
-$dbname = "tareas_db"; // Nombre de la base de datos  
+$servername = "localhost"; 
+$username = "root"; 
+$password = ""; 
+$dbname = "tareas_db"; 
 
 // Crear conexión  
 $conn = new mysqli($servername, $username, $password, $dbname);  
@@ -17,7 +17,6 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {  
     die("Conexión fallida: " . $conn->connect_error);  
 }  
-// echo "Conexión exitosa.<br>"; // Mensaje de depuración (puedes comentarlo o eliminarlo)
 
 // Inicializar mensaje
 $mensaje = "";
@@ -26,10 +25,8 @@ $mensaje = "";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {  
     // Obtener los datos del formulario
     $correo = $conn->real_escape_string($_POST['correo']);  
-    $contrasena = password_hash($_POST['contrasena'], PASSWORD_BCRYPT); // Hash de la contraseña  
-    $nombre_usuario = $conn->real_escape_string($_POST['nombre_usuario']); // Obtener nombre de usuario
-
-    // echo "Datos recibidos: Correo - $correo, Nombre de Usuario - $nombre_usuario<br>"; // Mensaje de depuración (puedes comentarlo o eliminarlo)
+    $contrasena = password_hash($_POST['contrasena'], PASSWORD_BCRYPT); 
+    $nombre_usuario = $conn->real_escape_string($_POST['nombre_usuario']); 
 
     // Verificar si el correo o nombre de usuario ya está registrado
     $sql_check = "SELECT id FROM usuarios WHERE correo = '$correo' OR nombre_usuario = '$nombre_usuario'";
@@ -38,7 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($result_check->num_rows > 0) {
         $mensaje = "Este correo electrónico o nombre de usuario ya está registrado.";
     } else {
-        // Si el correo y nombre de usuario no están registrados, insertarlos en la base de datos
+        // Insertarlos en la base de datos
         $sql = "INSERT INTO usuarios (correo, contrasena, nombre_usuario) VALUES ('$correo', '$contrasena', '$nombre_usuario')";
         
         if ($conn->query($sql) === TRUE) {  
@@ -50,7 +47,39 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }  
 
 $conn->close();  
-
-// Mostrar el mensaje en la página de registro
-echo $mensaje; 
 ?>
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro</title>
+    <link rel="stylesheet" href="login.css"> <!-- Enlaza tu CSS aquí -->
+</head>
+<body>
+    <div class="login-container">
+        <h2>Registro</h2>
+        <form action="" method="POST">
+            <label for="nombre_usuario">Nombre de Usuario</label>
+            <input type="text" id="nombre_usuario" name="nombre_usuario" placeholder="Nombre de usuario" required>
+            
+            <label for="correo">Correo Electrónico</label>
+            <input type="email" id="correo" name="correo" placeholder="Correo electrónico" required>
+            
+            <label for="contrasena">Contraseña</label>
+            <input type="password" id="contrasena" name="contrasena" placeholder="Contraseña" required>
+            
+            <div class="button-container">
+                <button type="submit">Registrar</button>
+                <a href="login.html" class="registro-button">Ir a login</a>
+            </div>
+        </form>
+        
+        <?php if ($mensaje): ?>
+            <p class="mensaje"><?php echo $mensaje; ?></p>
+        <?php endif; ?>
+    </div>
+</body>
+</html>
+

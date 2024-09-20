@@ -100,7 +100,7 @@ $conn->close();
             
             <div class="button-container">
                 <button type="submit">Login</button>
-                <a href="registro.html" class="registro-button">Ir a registro</a>
+                <a href="registro.php" class="registro-button">Ir a registro</a>
             </div>
         </form>
     </div>
