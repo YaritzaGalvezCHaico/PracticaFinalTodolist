@@ -73,7 +73,7 @@ $conn->close();
 
         .toggle-password {
             position: absolute;
-            right: 25px; /* Mover más hacia la izquierda */
+            right: 10px; /* Mover más hacia la izquierda */
             top: 50%;
             transform: translateY(-80%); /* Centra el ícono verticalmente */
             cursor: pointer;
