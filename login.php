@@ -60,6 +60,30 @@ $conn->close();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="stylesheet" href="login.css"> <!-- Estilos específicos para login -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Para los íconos -->
+    <style>
+        .password-container {
+            position: relative;
+        }
+
+        #contrasena {
+            padding-right: 40px; /* Espacio para el ícono */
+            height: 40px; /* Altura del campo de entrada */
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 25px; /* Mover más hacia la izquierda */
+            top: 50%;
+            transform: translateY(-80%); /* Centra el ícono verticalmente */
+            cursor: pointer;
+            color: #888;
+        }
+
+        .toggle-password:hover {
+            color: #000;
+        }
+    </style>
 </head>
 <body>
     <div class="login-container">
@@ -69,7 +93,10 @@ $conn->close();
             <input type="email" id="usuario" name="usuario" placeholder="Correo electrónico" required>
             
             <label for="contrasena">Contraseña</label>
-            <input type="password" id="contrasena" name="contrasena" placeholder="Contraseña" required>
+            <div class="password-container">
+                <input type="password" id="contrasena" name="contrasena" placeholder="Contraseña" required>
+                <i class="toggle-password fas fa-eye" id="togglePassword"></i>
+            </div>
             
             <div class="button-container">
                 <button type="submit">Login</button>
@@ -77,5 +104,17 @@ $conn->close();
             </div>
         </form>
     </div>
+
+    <script>
+        const togglePassword = document.getElementById('togglePassword');
+        const passwordInput = document.getElementById('contrasena');
+
+        togglePassword.addEventListener('click', function () {
+            // Alternar entre mostrar y ocultar la contraseña
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            this.classList.toggle('fa-eye-slash');
+        });
+    </script>
 </body>
 </html>
