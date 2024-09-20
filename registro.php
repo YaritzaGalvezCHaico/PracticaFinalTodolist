@@ -78,6 +78,30 @@ $conn->close();
         .toggle-password:hover {
             color: #000;
         }
+
+        .social-login {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+
+        .social-button {
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .google {
+            background-color: #db4437;
+            color: white;
+        }
+
+        .facebook {
+            background-color: #4267B2;
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -105,7 +129,12 @@ $conn->close();
         <?php if ($mensaje): ?>
             <p class="mensaje"><?php echo $mensaje; ?></p>
         <?php endif; ?>
-    </div>
+
+        <div class="social-login">
+    <button class="social-button google" onclick="location.href='https://accounts.google.com/o/oauth2/auth?client_id=YOUR_CLIENT_ID&redirect_uri=YOUR_REDIRECT_URI&response_type=code&scope=email';">Registrar con Google</button>
+    <button class="social-button facebook" onclick="location.href='https://www.facebook.com/v10.0/dialog/oauth?client_id=YOUR_APP_ID&redirect_uri=YOUR_REDIRECT_URI&scope=email';">Registrar con Facebook</button>
+</div>
+
 
     <script>
         const togglePassword = document.getElementById('togglePassword');

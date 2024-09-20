@@ -57,7 +57,7 @@ input[type="password"] {
 button {
     width: 120px; /* Tamaño del botón para una mejor interacción */
     padding: 10px; /* Espaciado interno del botón */
-    background-color: #007bff; /* Fondo azul del botón para destacar */
+    background-color: #000000; /* Fondo negro del botón para destacar */
     color: white; /* Texto blanco para contraste */
     border: none; /* Sin borde para un diseño limpio */
     border-radius: 4px; /* Bordes redondeados del botón */
@@ -73,9 +73,9 @@ button:hover {
 /* Estilo para el botón de ir a login */
 .registro-button {
     padding: 10px; /* Espaciado interno del botón de registro */
-    color: #007bff; /* Texto azul para el botón de registro */
+    color: #030303; /* Texto negro para el botón de registro */
     text-decoration: none; /* Elimina el subrayado del texto */
-    border: 1px solid #007bff; /* Borde azul del botón de registro */
+    border: 1px solid #000000; /* Borde negro del botón de registro */
     border-radius: 4px; /* Bordes redondeados del botón de registro */
     font-size: 16px; /* Tamaño de fuente del botón de registro */
     cursor: pointer; /* Cambia el cursor al pasar sobre el botón de registro */
@@ -126,13 +126,13 @@ button:hover {
 
 @media (max-width: 480px) {
     .login-container {
-        width: 90%; /* Ancho del contenedor aún más ajustado para pantallas pequeñas */
+        width: 100%; /* Ancho del contenedor aún más ajustado para pantallas pequeñas */
         padding: 10px; /* Espaciado interno más reducido */
         margin-top: 0; /* Ajusta el margen para pantallas muy pequeñas */
     }
 
     h2 {
-        font-size: 20px; /* Tamaño del título más pequeño */
+        font-size: 25px; /* Tamaño del título más pequeño */
     }
 
     input[type="email"],
@@ -155,7 +155,7 @@ button:hover {
 input[type="text"],
 input[type="email"],
 input[type="password"] {
-    width: calc(100% - 20px); /* Ajusta el ancho para el padding */
+    width: calc(110% - 20px); /* Ajusta el ancho para el padding */
     padding: 10px; /* Espaciado interno para los campos de entrada */
     margin-bottom: 15px; /* Espacio debajo de los campos de entrada */
     border: 1px solid #ccc; /* Borde gris claro */
