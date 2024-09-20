@@ -62,6 +62,7 @@ $conn->close();
     <link rel="stylesheet" href="login.css"> <!-- Estilos específicos para login -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Para los íconos -->
     <style>
+    @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap');
         .password-container {
             position: relative;
         }

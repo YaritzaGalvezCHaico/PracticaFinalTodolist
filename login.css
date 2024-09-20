@@ -8,7 +8,7 @@ body {
     display: flex;
     justify-content: center; /* Centra el contenido horizontalmente */
     align-items: center; /* Centra el contenido verticalmente */
-    height: 100vh; /* Asegura que la página ocupe toda la altura de la ventana */
+    height: 102vh; /* Asegura que la página ocupe toda la altura de la ventana */
     margin: 0; /* Elimina el margen por defecto */
 }
 
@@ -19,7 +19,7 @@ body {
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Sombra sutil para darle profundidad al contenedor */
     width: 300px; /* Ancho fijo del contenedor */
     text-align: center; /* Centra el texto dentro del contenedor */
-    margin-top: -5%; /* Ajusta el contenedor hacia arriba para centrar mejor en pantallas grandes */
+    margin-top: 0%; /* Ajusta el contenedor hacia arriba para centrar mejor en pantallas grandes */
 }
 
 
