@@ -14,13 +14,14 @@ body {
 
 .login-container {
     background-color: white; /* Fondo blanco del contenedor para un look limpio */
-    padding: 20px; /* Espaciado interno del contenedor */
+    padding: 30px; /* Aumenta el espaciado interno del contenedor */
     border-radius: 8px; /* Bordes redondeados para un diseño más amigable */
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Sombra sutil para darle profundidad al contenedor */
     width: 300px; /* Ancho fijo del contenedor */
     text-align: center; /* Centra el texto dentro del contenedor */
     margin-top: -5%; /* Ajusta el contenedor hacia arriba para centrar mejor en pantallas grandes */
 }
+
 
 h2 {
     margin-bottom: 25px; /* Espacio debajo del título */
@@ -214,14 +215,3 @@ button:hover {
     background-color: #f8f9fa; /* Color de hover para registro */
 }
 
-.social-login {
-    display: flex;
-    flex-direction: column; /* Asegura que los botones estén en una columna */
-    align-items: center; /* Centra los botones horizontalmente */
-    margin-top: 20px;
-}
-
-.social-button {
-    width: 100%; /* Asegúrate de que ambos botones tengan el mismo ancho */
-    margin-bottom: 10px; /* Espacio entre los botones */
-}
