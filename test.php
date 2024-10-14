@@ -1,4 +1,12 @@
 <?php
+include 'conexion.php'; // Asegúrate de que la ruta sea correcta
+
+if ($conexion) {
+    echo "Conexión exitosa a la base de datos.";
+} else {
+    echo "Error en la conexión.";
+}
+
 // Habilitar la visualización de errores
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
