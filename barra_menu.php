@@ -4,43 +4,16 @@ ob_start(); // Iniciar el buffer de salida
 
 session_start(); // Iniciar la sesión
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['profileImage'])) {
-    $targetDir = "uploads/"; // Specify the upload directory
-    $targetFile = $targetDir . basename($_FILES["profileImage"]["name"]);
-    $uploadOk = 1;
-    $imageFileType = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
+$stmt = $db->prepare("SELECT foto_perfil FROM usuarios WHERE id = ?");
+$stmt->bind_param("i", $userId);
+$stmt->execute();
+$result = $stmt->get_result();
+$user = $result->fetch_assoc();
 
-    // Check if image file is a actual image or fake image
-    $check = getimagesize($_FILES["profileImage"]["tmp_name"]);
-    if ($check !== false) {
-        $uploadOk = 1;
-    } else {
-        echo "El archivo no es una imagen.";
-        $uploadOk = 0;
-    }
-
-    // Check file size (5MB maximum)
-    if ($_FILES["profileImage"]["size"] > 5000000) {
-        echo "El archivo es demasiado grande.";
-        $uploadOk = 0;
-    }
-
-    // Allow certain file formats
-    if (!in_array($imageFileType, ['jpg', 'png', 'jpeg', 'gif'])) {
-        echo "Solo se permiten archivos JPG, JPEG, PNG y GIF.";
-        $uploadOk = 0;
-    }
-
-    // Check if $uploadOk is set to 0 by an error
-    if ($uploadOk == 0) {
-        echo "El archivo no se pudo subir.";
-    } else {
-        if (move_uploaded_file($_FILES["profileImage"]["tmp_name"], $targetFile)) {
-            echo "El archivo " . htmlspecialchars(basename($_FILES["profileImage"]["name"])) . " ha sido subido.";
-        } else {
-            echo "Error al subir el archivo.";
-        }
-    }
+if ($user) {
+    $profileImage = $user['foto_perfil'];
+} else {
+    $profileImage = 'https://via.placeholder.com/40'; // Imagen por defecto
 }
 
 
@@ -105,7 +78,7 @@ ob_end_flush(); // Enviar el contenido del buffer al navegador
             padding: 10px;
             border-radius: 12px;
             transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
-            margin: 70px 0 -15px; /* Espacio adicional arriba y margen reducido abajo */
+            margin: 60px 0 -17px; /* Espacio adicional arriba y margen reducido abajo */
             width: 100%;
         }
 
@@ -116,7 +89,7 @@ ob_end_flush(); // Enviar el contenido del buffer al navegador
         }
 
         .icon {
-            font-size: 21px;
+            font-size: 20px;
             color: #000000; /* Iconos de color negro */
         }
 
@@ -128,7 +101,7 @@ ob_end_flush(); // Enviar el contenido del buffer al navegador
             display: flex; /* Para centrar el contenido */
             align-items: center; /* Centrar verticalmente el ícono */
             justify-content: center; /* Centrar horizontalmente */
-            margin-top: 65px; /* Ajustado el espacio entre configuración y cerrar */
+            margin-top: 50px; /* Ajustado el espacio entre configuración y cerrar */
             text-decoration: none;
             color: #000000; /* Texto en negro */
             padding: 10px;
@@ -344,23 +317,24 @@ ob_end_flush(); // Enviar el contenido del buffer al navegador
     <button class="search-button" id="searchButton"><i class="fas fa-search"></i></button>
 </div>
 
-<div class="user-menu">
-    <img src="profile.jpg" alt="Perfil" class="profile-pic" id="profilePic" style="cursor: pointer;">
-    <input type="file" accept="image/*" id="fileInput" style="display: none;">
-    <div class="user-dropdown">
-        <a href="#">Perfil de <?php echo $username; ?></a>
+<div class="notification-icon" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-bell icon" aria-label="Notificaciones"></i>
+            <span class="notification-count">3</span> <!-- Contador de notificaciones -->
+            <div class="notification-dropdown" aria-label="Lista de Notificaciones">
+                <p>No tienes nuevas notificaciones.</p>
+            </div>
+        </div>
+        <div class="user-menu">
+    <img src="https://via.placeholder.com/40" alt="Foto de Perfil" class="profile-pic" title="Selecciona tu foto de perfil" aria-label="Foto de perfil" onclick="document.getElementById('profileImageInput').click()">
+    <input type="file" id="profileImageInput" accept="image/*" style="display: none;" onchange="uploadProfileImage()">
+    <div class="user-dropdown" aria-label="Menú de usuario">
+        <a href="perfil.php">Mi perfil</a>
+        <a href="configuracion.php">Configuraciones</a>
+        <a href="login.php">Cerrar sesión</a>
     </div>
 </div>
 
-        <div class="notification-icon">
-            <i class="fas fa-bell"></i>
-            <span class="notification-count"><?php echo $notification_count; ?></span>
-            <div class="notification-dropdown">
-                <a href="#">Notificación 1</a>
-                <a href="#">Notificación 2</a>
-                <a href="#">Notificación 3</a>
-            </div>
-        </div>
+
     </div>
     
     <div class="menu">
@@ -371,6 +345,8 @@ ob_end_flush(); // Enviar el contenido del buffer al navegador
     <a href="configuracion.php" class="menu-icon config-icon"><i class="fas fa-cogs icon"></i></a>
     <a href="logout.php" class="close-section"><i class="fas fa-sign-out-alt icon"></i></a>
 </div>
+
+<input type="file" id="profilePicInput" style="display: none;" accept="image/*" onchange="uploadProfilePic()">
 
 <script>
         // Habilitar la barra de búsqueda y el botón al seleccionar un tipo
@@ -435,27 +411,42 @@ ob_end_flush(); // Enviar el contenido del buffer al navegador
         }
     </script>
 
-<script>
-    const profilePic = document.getElementById('profilePic');
-    const fileInput = document.getElementById('fileInput');
+    <script>
+function uploadProfileImage() {
+    const input = document.getElementById('profileImageInput');
+    const file = input.files[0];
 
-    // Abrir el selector de archivos al hacer clic en la imagen de perfil
-    profilePic.addEventListener('click', function() {
-        fileInput.click();
-    });
+    if (file) {
+        const reader = new FileReader();
+        
+        // Muestra una vista previa de la imagen seleccionada
+        reader.onload = function(e) {
+            document.querySelector('.profile-pic').src = e.target.result;
+        };
+        
+        reader.readAsDataURL(file);
 
-    // Cambiar la imagen de perfil al seleccionar un archivo
-    fileInput.addEventListener('change', function(event) {
-        const file = event.target.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                profilePic.src = e.target.result; // Cambiar la imagen de perfil
-            };
-            reader.readAsDataURL(file);
-        }
-    });
-</script>
+        // Aquí puedes enviar el archivo al servidor
+        const formData = new FormData();
+        formData.append('profileImage', file);
+
+        fetch('upload_profile_image.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Éxito:', data);
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+    }
+}
+
+
+
+    </script>
 
 
 </body>
