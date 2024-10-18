@@ -397,6 +397,7 @@ th {
     border-left: 2px solid #ffffff; /* Borde izquierdo verde */
     border-right: 2px solid #ffffff; /* Borde derecho verde */
     font-size: 14px; /* Para aumentar el tamaño a 18 píxeles */
+    text-align: center; /* Alinea el texto del encabezado en el centro */
 }
 
 td {
@@ -409,6 +410,46 @@ td {
     overflow: hidden; /* Evita el desbordamiento del contenido */
     white-space: nowrap; /* Evita que el texto se divida en varias líneas */
     text-overflow: ellipsis; /* Agrega puntos suspensivos si el texto es demasiado largo */
+    text-align: center; /* Centra el texto por defecto */
+}
+
+
+/* Ajustes de alineación y tamaño para cada columna */
+th:nth-child(3) {
+    text-align: center; /* Encabezado de la columna 3 centrado */
+}
+
+td:nth-child(3) {
+    text-align: left; /* Descripción de tarea alineada a la izquierda */
+}
+
+/* Ajustes de tamaño para cada columna */
+th:nth-child(1), td:nth-child(1) { /* ID */
+    width: 30px;
+}
+
+th:nth-child(2), td:nth-child(2) { /* Favorito */
+    width: 60px;
+}
+
+th:nth-child(3), td:nth-child(3) { /* Tarea */
+    width: 300px;
+}
+
+th:nth-child(4), td:nth-child(4) { /* Estado */
+    width: 120px;
+}
+
+th:nth-child(5), td:nth-child(5) { /* Prioridad */
+    width: 120px;
+}
+
+th:nth-child(6), td:nth-child(6) { /* Fecha de Vencimiento */
+    width: 120px;
+}
+
+th:nth-child(7), td:nth-child(7) { /* Acción */
+    width: 120px;
 }
 
 tr:nth-child(even) {
@@ -490,7 +531,7 @@ tr:hover {
 
 /* Estilo para el selector de prioridad */
 .prioridad {
-    padding: 5px 27px; /* Espaciado interno similar al botón */
+    padding: 5px 29px; /* Espaciado interno similar al botón */
     font-size: 14px; /* Tamaño de fuente */
     border-radius: 4px; /* Bordes redondeados */
     border: none; /* Sin borde */
@@ -575,7 +616,7 @@ label {
     background-color: #c1cfff; /* Fondo azul */
     color: rgb(0, 0, 0); /* Texto blanco */
     border: none; /* Sin borde */
-    padding: 5px 15px; /* Espaciado interno */
+    padding: 5px 17px; /* Espaciado interno */
     font-size: 14px; /* Tamaño de fuente */
     border-radius: 4px; /* Bordes redondeados */
     cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
@@ -657,8 +698,11 @@ label {
 </head>
 <body id="tareas-page">
     <div class="tareas-container">
-        <h2>Listado de Tareas de <span id="nombre-usuario"><?php echo htmlspecialchars($_SESSION['usuario_nombre']); ?></span></h2>
-<!-- Formulario para añadir nueva tarea y selector de ordenamiento -->
+        <h2><i class="fas fa-edit"></i> Listado de Tareas de <span id="nombre-usuario"><?php echo htmlspecialchars($_SESSION['usuario_nombre']); ?></span></h2>
+
+
+        
+        <!-- Formulario para añadir nueva tarea y selector de ordenamiento -->
 <div class="add-task-container">
             <form action="tareas.php" method="POST" class="add-task">
                 <input type="text" name="descripcion" placeholder="Nueva tarea" required>

@@ -13,7 +13,8 @@ CREATE TABLE usuarios (
     correo VARCHAR(100) NOT NULL UNIQUE,
     contrasena VARCHAR(255) NOT NULL,
     nombre_usuario VARCHAR(50) NOT NULL UNIQUE, -- Campo para nombre de usuario
-    creado_en TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    creado_en TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    foto_perfil VARCHAR(255) DEFAULT NULL -- Columna para la imagen de perfil
 );
 
 -- Tabla para tareas
@@ -54,6 +55,8 @@ CREATE TABLE tarea_categoria (
     FOREIGN KEY (tarea_id) REFERENCES tareas(id) ON DELETE CASCADE,
     FOREIGN KEY (categoria_id) REFERENCES categorias(id) ON DELETE CASCADE
 );
+
+ALTER TABLE usuarios ADD COLUMN descripcion TEXT;
 
 
 CREATE USER 'usuario'@'%' IDENTIFIED BY 'tu_contraseña';
